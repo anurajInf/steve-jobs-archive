@@ -6,6 +6,20 @@
   "license": "MIT",
   "private": true,
   "type": "module",
+  "keywords": [
+    "steve-jobs",
+    "scroll-animation",
+    "react",
+    "vite",
+    "spring-physics",
+    "interactive",
+    "portfolio",
+    "storytelling"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anuraj-rajput/steve-jobs-scroll-clone"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
