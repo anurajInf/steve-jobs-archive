@@ -27,7 +27,7 @@ A beautifully crafted, interactive scroll experience inspired by the Steve Jobs 
 ## 📁 Project Structure
 
 ```
-steve-jobs-scroll-clone/
+steve-jobs-archive/
 ├── src/
 │   ├── components/          # React components
 │   │   ├── MainContent.jsx          # Main container & orchestrator
@@ -151,8 +151,8 @@ The project follows the Steve Jobs Archive design language:
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd steve-jobs-scroll-clone
+git clone https://github.com/anuraj-rajput/steve-jobs-archive.git
+cd steve-jobs-archive
 
 # Install dependencies
 npm install
