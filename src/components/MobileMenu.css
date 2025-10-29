@@ -223,7 +223,7 @@
   }
 }
 
-/* Hide hamburger and menu on desktop (but keep tree icon visible) */
+/* Hide menu components on desktop, but keep tree icon visible */
 @media (min-width: 769px) {
   .mobile-hamburger,
   .mobile-menu-overlay {

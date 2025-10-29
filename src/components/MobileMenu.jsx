@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import hamburgerIcon from '../assets/hamburger.svg';
-import treeIcon from '../assets/treeIcon.svg';
 import { CHAPTER_LABELS } from '../data/content';
 import './MobileMenu.css';
 
@@ -67,7 +65,7 @@ const MobileMenu = ({ scrollProgress, onScrollTo, currentChapter }) => {
         onClick={scrollToTop}
         aria-label="Go to top"
       >
-        <img src={treeIcon} alt="Home" />
+        <img src="/assets/treeIcon.svg" alt="Home" />
       </button>
 
       {/* Hamburger icon - top right */}
@@ -77,7 +75,7 @@ const MobileMenu = ({ scrollProgress, onScrollTo, currentChapter }) => {
         aria-label="Menu"
         aria-expanded={isOpen}
       >
-        <img src={hamburgerIcon} alt="Menu" />
+        <img src="/assets/hamburger.svg" alt="Menu" />
       </button>
 
       {/* Full-screen menu overlay */}
