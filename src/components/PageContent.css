@@ -1,0 +1,70 @@
+/* PageContent Component Styles */
+
+.page-content {
+  display: block;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 120px 0 80px;
+}
+
+/* Cover page - reduced padding to fit 100vh */
+.book-page[data-cover] .page-content {
+  padding: 40px 40px 60px;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Quote page specific padding */
+.book-page[data-gray][data-vertical-center] .page-content {
+  padding: 80px 40px;
+}
+
+/* Black page - for image galleries - Match HTML reference */
+.book-page[data-black] .page-content {
+  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  max-height: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Ensure images on black backgrounds are centered */
+.book-page[data-black] .page-content .responsive-image {
+  width: 100%;
+  max-width: 900px;
+  flex-shrink: 1; /* Allow shrinking if needed to fit viewport */
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding: 80px 0 60px;
+  }
+  
+  .book-page[data-cover] .page-content {
+    padding: 60px 30px 40px;
+  }
+  
+  .book-page[data-vertical-center] .page-content {
+    min-height: calc(100vh - 120px);
+  }
+  
+  .book-page[data-gray][data-vertical-center] .page-content {
+    padding: 60px 30px;
+  }
+  
+  .book-page[data-black] .page-content {
+    padding: 60px 20px;
+    gap: 3rem;
+  }
+}
+

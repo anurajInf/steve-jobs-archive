@@ -1,0 +1,331 @@
+/**
+ * GLOBAL STYLES & DESIGN TOKENS
+ * Based on original Steve Jobs Archive website
+ */
+
+/* Import design tokens */
+@import './styles/design-tokens.css';
+
+/**
+ * 🧩 FONT STACK - lf serif (from Steve Jobs Archive)
+ * Primary: 'lf' (custom serif font from the archive)
+ * Fallback: Georgia → Times New Roman → serif
+ */
+@supports (font-family: system-ui) {
+  :root {
+    --font-family-primary: 'lf', Georgia, 'Times New Roman', serif;
+    --font-family-display: 'lf', Georgia, 'Times New Roman', serif;
+    --font-family-text: 'lf', Georgia, 'Times New Roman', serif;
+  }
+}
+
+/* CSS Reset & Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Smooth scroll with snap behavior - ONE section at a time */
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+  
+  /* 🧩 Typography System - lf serif */
+  font-family: 'lf', Georgia, 'Times New Roman', serif;
+  font-size: calc(max(min(14px + 0.75vw, 50px), 14.5px + 0.75vw));
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  color: #000000;
+  
+  /* Text rendering optimization */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Font feature settings - from Steve Jobs Archive */
+  font-feature-settings: 'rvrn' 1, 'calt' 1, 'kern' 1, 'liga' 1, 'ss03' 1, 'ss10' 0, 'ss15' 1, 'ss18' 1;
+  font-variant-numeric: oldstyle-nums;
+  font-kerning: auto;
+  
+  /* Prevent overscroll */
+  overscroll-behavior: none;
+  
+  /* Content width */
+  --content-max-width: 900px;
+  --page-padding: 40px;
+  
+  /* Scrollbar hidden */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  color: #000000;
+  overflow-x: hidden;
+  
+  /* 🪶 lf serif Typography */
+  font-family: 'lf', Georgia, 'Times New Roman', serif;
+  font-size: calc(max(min(14px + 0.75vw, 50px), 14.5px + 0.75vw));
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0px;
+  
+  /* Enable smooth momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Prevent pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+  
+  /* Reset font settings for body */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: default;
+}
+
+/* ============================================
+   🧩 TYPOGRAPHY HIERARCHY
+   lf Serif System - Responsive & Modular
+   ============================================ */
+
+/* Headings - lf serif */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'lf', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  /* Section titles / chapter headings - Match HTML reference */
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 1.5;
+  font-style: italic;
+  color: #0089D0;
+  margin-bottom: 1.2em;
+}
+
+h2 {
+  /* Subtitle / secondary heading - Responsive */
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 1.3;
+  color: #0089D0;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  /* Description text - Match HTML reference */
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 1.5;
+  font-style: italic;
+  color: #0089D0;
+  margin-top: 1.2em;
+  margin-bottom: 0;
+}
+
+h4, h5, h6 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+  color: #0089D0;
+  margin-bottom: 0.5rem;
+}
+
+/* Body text - lf serif */
+p {
+  font-family: 'lf', Georgia, 'Times New Roman', serif;
+  font-size: calc(max(min(14px + 0.75vw, 50px), 14.5px + 0.75vw));
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0px;
+  color: inherit;
+  margin: 0;
+}
+
+p + p {
+  margin-top: 1.5rem;
+}
+
+/* Quote text - Italic */
+blockquote,
+.quote-author {
+  font-family: 'lf', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0px;
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* Navigation / chapter list - system font */
+nav,
+.nav-item,
+.chapter-label {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #000000;
+}
+
+/* Selection Styling */
+::selection {
+  background-color: rgba(0, 137, 208, 0.3);
+  color: inherit;
+}
+
+/* Links */
+a {
+  font-family: 'lf', Georgia, 'Times New Roman', serif;
+  color: #0089D0;
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  font-weight: 400;
+}
+
+a:hover {
+  opacity: 0.8;
+  color: #0071B3;
+}
+
+a:focus-visible {
+  outline: 2px solid #0089D0;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Buttons */
+button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  letter-spacing: 0px;
+  transition: opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus-visible {
+  outline: 2px solid #0071E3;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #0089D0;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 1000;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px), (pointer: coarse) {
+  html {
+    /* Ensure smooth scrolling on touch devices */
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+    /* Better touch responsiveness */
+    touch-action: pan-y;
+  }
+}
+
+/* Extra small phones - fixed font size */
+@media (max-width: 350px) {
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    font-size: 16px;
+  }
+}

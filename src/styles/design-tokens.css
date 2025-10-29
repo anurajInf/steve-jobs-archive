@@ -1,0 +1,244 @@
+/**
+ * DESIGN TOKENS
+ * Extracted from Steve Jobs Archive original website
+ * 
+ * Use these tokens for pixel-perfect implementation.
+ * All values match the original site exactly.
+ */
+
+:root {
+  /* ========================================
+     COLORS - Base Palette
+     ======================================== */
+  
+  /* Text Colors */
+  --text-white: #FFF;
+  --text-black: #000000;
+  --text-gray: #9F9F9F;
+  --text-blue: #0089D0;
+  
+  /* Background Colors */
+  --background-white: #FFF;
+  --background-black: #000000;
+  --background-gray: #646464;
+  --background-light-gray: #f1f1f1;
+  --background-blue: #0089D0;
+  
+  /* Special Colors */
+  --translucent-gray: rgba(187, 187, 187, 0.5);
+  
+  
+  /* ========================================
+     COLORS - P3 Wide Color Gamut
+     Modern displays with wider color range
+     ======================================== */
+  
+  --blue-p3: color(display-p3 0 0.537 0.815);
+  --blue-p3-thin: color(display-p3 0 0.591 0.896);
+  --blue-p3-minimode-screen: color(display-p3 0 0.53899 0.848);
+  --blue-srgb: #0089D0;
+  
+  
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  
+  /* Font Families */
+  --font-main: "lf", serif;
+  --ui-font: system-ui, helvetica, sans-serif;
+  
+  /* Font Sizes */
+  --font-size: calc(max(min(14px + 0.75vw, 50px), 14.5px + 0.75vw));
+  --ui-font-size: 11pt;
+  --line-height: 1.5;
+  
+  /* Font Features (for custom "lf" font) */
+  /* Use these exact settings for pixel-perfect typography */
+  /* font-feature-settings: 'rvrn' 1, 'calt' 1, 'kern' 1, 'liga' 1, 'ss03' 1, 'ss10' 0, 'ss15' 1, 'ss18' 1; */
+  /* font-variant-numeric: oldstyle-nums; */
+  
+  
+  /* ========================================
+     LAYOUT & SPACING
+     ======================================== */
+  
+  /* Navigation */
+  --nav-height: 76px;
+  
+  /* Page Spacing */
+  --page-overscroll: 100px;
+  --horizontal-bleed: 100px;
+  --end-bleed: 300px;
+  
+  /* Responsive Margins */
+  --max-width: calc(min(100vw - 60px, 2000px, 145px + 50vw));
+  --margin: calc((100vw - var(--max-width)) / 2);
+  --extra-white-padding: calc(var(--margin) * 0.3);
+  
+  /* Insets */
+  --sja-match-inset: 30px;
+  
+  
+  /* ========================================
+     SCROLL BEHAVIOR
+     ======================================== */
+  
+  /* Critical for section-based navigation */
+  /* scroll-snap-type: y mandatory; */
+  /* scroll-snap-align: start; (for snap-start) */
+  /* scroll-snap-align: end; (for snap-end) */
+  /* scroll-snap-stop: always; */
+  
+  
+  /* ========================================
+     ANIMATIONS & TRANSITIONS
+     ======================================== */
+  
+  /* Easing Functions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-develop: cubic-bezier(0.455, 0.03, 0.2, 1);
+  --ease-drop: cubic-bezier(0.455, 0.03, 0.2, 1);
+  --ease-nav: cubic-bezier(0.2, 0, 0, 1);
+  
+  /* Durations */
+  --nav-opacity-transition-duration: 0.4s;
+  --scroll-debounce: 400ms;
+  
+  
+  /* ========================================
+     RESPONSIVE FLAGS
+     ======================================== */
+  
+  --mobile: 0;
+  --zoomed: 0;
+  --mobile-only-display: none;
+  --large-only-display: block;
+}
+
+
+/* ========================================
+   P3 COLOR GAMUT SUPPORT
+   Automatically upgrades colors on modern displays
+   ======================================== */
+
+@supports (color: color(display-p3 1 1 1)) {
+  :root {
+    --text-blue: color(display-p3 0 0.537 0.815);
+    --background-blue: color(display-p3 0 0.537 0.815);
+  }
+}
+
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Tablet & Touch Devices */
+@media (max-width: 768px), (pointer: coarse) {
+  :root {
+    --mobile: 1;
+    --mobile-only-display: block;
+    --large-only-display: none;
+    --nav-opacity-transition-duration: 0.2s;
+    --sja-match-inset: 25px;
+    --ui-font-size: 10.5pt;
+    --horizontal-bleed: 30px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 1180px) {
+  :root {
+    --sja-match-inset: 25px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 375px) {
+  :root {
+    --ui-font-size: 8.5pt;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 350px) {
+  :root {
+    --font-size: 16px;
+  }
+}
+
+
+/* ========================================
+   SPECIAL EFFECTS REFERENCE
+   ======================================== */
+
+/**
+ * POLAROID DROP ANIMATION
+ * Used on cover page
+ * Duration: 6s
+ * Easing: cubic-bezier(0.455, 0.03, 0.2, 1)
+ * 
+ * @keyframes drop {
+ *   0% { transform: translate(0, calc(100vh)); }
+ *   100% { transform: translate(0); }
+ * }
+ */
+
+/**
+ * DEVELOP ANIMATION (FADE IN)
+ * Used for photo development effect
+ * Duration: 4s, 8s, 12s (layered)
+ * Easing: cubic-bezier(0.455, 0.03, 0.2, 1)
+ * 
+ * @keyframes develop {
+ *   from { opacity: 0; }
+ *   to { opacity: 1; }
+ * }
+ */
+
+/**
+ * MIX BLEND MODES
+ * - overlay: Used for white-overlay effects
+ * - screen: Used for blue-screen effects
+ */
+
+
+/* ========================================
+   IMPLEMENTATION NOTES
+   ======================================== */
+
+/**
+ * CRITICAL FONT SETTINGS:
+ * Apply these to all text elements for exact match:
+ * 
+ * font-family: lf;
+ * font-variant-numeric: oldstyle-nums;
+ * font-feature-settings: 'rvrn' 1, 'calt' 1, 'kern' 1, 'liga' 1, 'ss03' 1, 'ss10' 0, 'ss15' 1, 'ss18' 1;
+ * -webkit-font-smoothing: antialiased;
+ * -moz-osx-font-smoothing: grayscale;
+ */
+
+/**
+ * SCROLL SNAP STRUCTURE:
+ * 
+ * html {
+ *   scroll-snap-type: y mandatory;
+ * }
+ * 
+ * snap-start {
+ *   scroll-snap-align: start;
+ *   scroll-snap-stop: always;
+ * }
+ * 
+ * snap-end {
+ *   scroll-snap-align: end;
+ * }
+ */
+
+/**
+ * PAGE VARIANTS:
+ * - [white]: Default, white background
+ * - [black]: Black background, for photo galleries
+ * - [gray]: Gray background (#646464)
+ * - [blue]: Blue background (#0089D0), centered text
+ */

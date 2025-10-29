@@ -1,0 +1,326 @@
+/* ScrubScroller.css - Interactive sidebar navigation */
+
+.scrub-scroller {
+  position: fixed;
+  top: 0;
+  right: 40px;
+  width: 200px;
+  height: 100vh;
+  z-index: 9997;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+/* Section Indicator - Shows current section at top right */
+.section-indicator {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.section-indicator-text {
+  font-family: var(--ui-font);
+  font-size: 13pt;
+  font-weight: 600;
+  font-style: italic;
+  color: #0080FF;
+  letter-spacing: 0.02em;
+  text-align: right;
+  display: block;
+  white-space: nowrap;
+}
+
+/* Section indicator color adaptation */
+body.light-bg .section-indicator-text {
+  color: #0080FF;
+}
+
+body.blue-bg .section-indicator-text {
+  color: #FFFFFF;
+}
+
+body.black-bg .section-indicator-text {
+  color: #FFFFFF;
+}
+
+.scrub-scroller-touch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* Progress Track - Container for segments */
+.scrub-track {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  overflow: visible;
+  transition: width 0.3s ease;
+}
+
+/* On hover - track becomes thicker */
+.scrub-scroller:hover .scrub-track {
+  width: 6px;
+}
+
+/* Individual track segment between labels */
+.scrub-track-segment {
+  position: absolute;
+  right: 0;
+  width: 2px;
+  background: rgba(64, 64, 64, 0.25);
+  transition: width 0.3s ease, background-color 0.3s;
+  /* Larger gap at bottom to create visible separation */
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.scrub-scroller:hover .scrub-track-segment {
+  width: 6px;
+  background: rgba(64, 64, 64, 0.35);
+}
+
+/* Filled portion of each segment */
+.scrub-track-segment-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 2px;
+  background: #0080FF;
+  transition: width 0.3s ease, background-color 0.3s;
+  /* NO transition on height - spring physics handles it */
+  transform-origin: top;
+  will-change: height;
+}
+
+/* On hover - filled segments become thicker */
+.scrub-scroller:hover .scrub-track-segment-filled {
+  width: 6px;
+}
+
+/* ========================================
+   COLOR ADAPTATION BASED ON BACKGROUND
+   Scenario 1 (Dark/Black): Active → White
+   Scenario 2 (Blue): Active → White  
+   Scenario 3 (White/Light): Active → Bright Blue (#0080FF)
+   ======================================== */
+
+/* SCENARIO 1: Dark/Black Background - White Active, Gray Inactive */
+body.black-bg .scrub-track-segment,
+body.black-bg .scrub-track-segment-filled {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.black-bg .scrub-track-segment {
+  background: rgba(64, 64, 64, 0.5);
+}
+
+body.black-bg .scrub-scroller:hover .scrub-track-segment {
+  background: rgba(64, 64, 64, 0.65);
+}
+
+body.black-bg .scrub-track-segment-filled {
+  background: #FFFFFF;
+}
+
+body.black-bg .scrub-label-text {
+  color: #666666;
+}
+
+body.black-bg .scrub-label.active .scrub-label-text {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+body.black-bg .scrub-label.passed .scrub-label-text {
+  color: #888888;
+  font-weight: 600;
+}
+
+/* SCENARIO 2: Blue Background - White Active, Light Blue Inactive */
+body.blue-bg .scrub-track-segment,
+body.blue-bg .scrub-track-segment-filled {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.blue-bg .scrub-track-segment {
+  background: rgba(160, 216, 238, 0.3);
+}
+
+body.blue-bg .scrub-scroller:hover .scrub-track-segment {
+  background: rgba(160, 216, 238, 0.4);
+}
+
+body.blue-bg .scrub-track-segment-filled {
+  background: #FFFFFF;
+}
+
+body.blue-bg .scrub-label-text {
+  color: #A0D8EE;
+}
+
+body.blue-bg .scrub-label.active .scrub-label-text {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+body.blue-bg .scrub-label.passed .scrub-label-text {
+  color: #A0D8EE;
+  font-weight: 600;
+}
+
+/* SCENARIO 3: Light/White Background - Bright Blue Active, Gray Inactive */
+body.light-bg .scrub-track-segment,
+body.light-bg .scrub-track-segment-filled {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.light-bg .scrub-track-segment {
+  background: rgba(64, 64, 64, 0.25);
+}
+
+body.light-bg .scrub-scroller:hover .scrub-track-segment {
+  background: rgba(64, 64, 64, 0.35);
+}
+
+body.light-bg .scrub-track-segment-filled {
+  background: #0080FF;
+}
+
+/* Labels on light backgrounds - Bright Blue Active (#0080FF), Gray Inactive */
+body.light-bg .scrub-label-text {
+  color: #999999;
+}
+
+body.light-bg .scrub-label.active .scrub-label-text {
+  color: #0080FF;
+  font-weight: 700;
+}
+
+body.light-bg .scrub-label.passed .scrub-label-text {
+  color: #666666;
+}
+
+/* On light/blue sections, progress bar turns blue */
+body.light-section .scrub-track-filled {
+  background: #0071E3;
+}
+
+/* Unfilled portion - not needed, track serves as background */
+.scrub-track-unfilled {
+  display: none;
+}
+
+/* Chapter Labels - Hidden by default, visible on hover */
+.scrub-label {
+  position: absolute;
+  right: 15px;
+  transform: translateY(-50%);
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease, color 0.3s;
+  /* NO transition on transform - spring physics handles it */
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: var(--ui-font);
+  font-style: normal;
+  font-variation-settings: 'wght' 500;
+  text-align: right;
+  will-change: opacity, transform;
+}
+
+/* Show all labels on hover */
+.scrub-scroller:hover .scrub-label {
+  opacity: 1 !important; /* Override inline styles on hover */
+}
+
+/* Default state - dimmed grey for future sections */
+.scrub-label-text {
+  display: block;
+  font-size: var(--ui-font-size);
+  font-weight: 600;
+  color: #404040;
+  padding: 0;
+  background: transparent;
+  letter-spacing: 0.05em;
+  transition: color 0.3s, font-weight 0.3s;
+  text-transform: none;
+  font-family: var(--ui-font);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Active state - bright color for current section */
+.scrub-label.active .scrub-label-text {
+  color: #0080FF;
+  font-weight: 700;
+}
+
+/* Passed state - same as inactive */
+.scrub-label.passed .scrub-label-text {
+  color: #404040;
+  font-weight: 600;
+}
+
+/* On light/blue sections, active label turns blue */
+body.light-section .scrub-label.active .scrub-label-text {
+  color: #0071E3;
+}
+
+/* Hide labels on cover/intro sections */
+body.hide-scrollbar .scrub-scroller {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile Styles - HIDE scrub scroller on mobile */
+@media (max-width: 768px) {
+  .scrub-scroller,
+  .section-indicator {
+    display: none !important;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .scrub-scroller {
+    right: 30px;
+    width: 150px;
+  }
+
+  .section-indicator {
+    right: 30px;
+  }
+}
+
+/* Desktop large screens */
+@media (min-width: 1400px) {
+  .scrub-scroller {
+    right: 60px;
+  }
+
+  .section-indicator {
+    right: 60px;
+  }
+}

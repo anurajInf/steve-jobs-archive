@@ -1,0 +1,111 @@
+/* Combined styles from BookSection.css and BookPage.css */
+
+/* Section container - CRITICAL for scroll snapping */
+.book-section {
+  position: relative;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always; /* Force stop at each section */
+}
+
+.book-section[data-book-cover] {
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+
+/* Page/Section styling */
+.book-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+  scroll-snap-align: start; /* Ensure snapping on the page itself */
+}
+
+/* Background colors */
+.book-page[data-gray] {
+  background-color: #646464;
+  color: #FFF;
+}
+
+.book-page[data-blue] {
+  background-color: #0089D0;
+  color: #FFF;
+}
+
+.book-page[data-black] {
+  background-color: #000000;
+  color: #FFF;
+}
+
+.book-page[data-cover] {
+  background-color: #646464;
+  color: #FFF;
+}
+
+/* Vertical centering */
+.book-page[data-vertical-center] {
+  justify-content: center;
+}
+
+/* Title pages */
+.book-page[data-title-page] {
+  padding: 6rem 2rem;
+}
+
+/* Snap markers (hidden, used for scroll detection) */
+.snap-start,
+.snap-end {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.snap-start {
+  top: 0;
+  left: 0;
+}
+
+.snap-end {
+  bottom: 0;
+  right: 0;
+}
+
+/* Navigation occluder */
+.nav-occluder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-page {
+    padding: 3rem 1.5rem;
+  }
+  
+  .book-page[data-title-page] {
+    padding: 4rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-page {
+    padding: 2rem 1rem;
+  }
+  
+  .book-page[data-title-page] {
+    padding: 3rem 1rem;
+  }
+}
