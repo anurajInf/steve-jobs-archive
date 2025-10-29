@@ -11,6 +11,10 @@ import scrollAnimationOrchestrator from '../services/scrollAnimationOrchestrator
 import useSectionScroll from '../hooks/useSectionScroll';
 import './MainContent.css';
 
+// Import cover photo images
+import photo18_256 from '../assets/photo-18~256.jpg';
+import photo18_1500 from '../assets/photo-18~1500.jpg';
+
 /**
  * MainContent - Renders all book sections based on content.js
  * Converts section data to appropriate React components
@@ -169,8 +173,8 @@ const MainContent = () => {
           {section.coverPhoto && (
             <div className="cover-photo-inline">
               <img 
-                src={`/src/assets/photo-${section.coverPhoto}~1500.jpg`}
-                srcSet={`/src/assets/photo-${section.coverPhoto}~256.jpg 256w, /src/assets/photo-${section.coverPhoto}~1500.jpg 1500w`}
+                src={photo18_1500}
+                srcSet={`${photo18_256} 256w, ${photo18_1500} 1500w`}
                 sizes="(max-width: 768px) 240px, 320px"
                 alt="Steve Jobs"
                 loading="eager"
