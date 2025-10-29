@@ -223,11 +223,18 @@
   }
 }
 
-/* Hide on desktop */
+/* Hide menu components on desktop, but keep tree icon visible */
 @media (min-width: 769px) {
-  .mobile-tree-icon,
   .mobile-hamburger,
   .mobile-menu-overlay {
     display: none !important;
+  }
+  
+  /* Adjust tree icon size for desktop */
+  .mobile-tree-icon {
+    top: 2rem;
+    left: 2rem;
+    width: 48px;
+    height: 48px;
   }
 }

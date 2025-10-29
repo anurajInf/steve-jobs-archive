@@ -26,8 +26,8 @@ const ResponsiveImage = ({
   const isMobile = window.innerWidth <= 768;
   
   // Build image paths
-  const smallSrc = `/src/assets/photo-${photoNumber}~256.jpg`;
-  const largeSrc = `/src/assets/photo-${photoNumber}~1500.webp`;
+  const smallSrc = `/assets/photo-${photoNumber}~256.jpg`;
+  const largeSrc = `/assets/photo-${photoNumber}~1500.webp`;
   
   // Choose appropriate image based on device
   const imageSrc = isMobile ? smallSrc : largeSrc;

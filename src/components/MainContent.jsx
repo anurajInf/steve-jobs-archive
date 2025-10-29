@@ -169,8 +169,8 @@ const MainContent = () => {
           {section.coverPhoto && (
             <div className="cover-photo-inline">
               <img 
-                src={`/src/assets/photo-${section.coverPhoto}~1500.jpg`}
-                srcSet={`/src/assets/photo-${section.coverPhoto}~256.jpg 256w, /src/assets/photo-${section.coverPhoto}~1500.jpg 1500w`}
+                src={`/assets/photo-${section.coverPhoto}~1500.jpg`}
+                srcSet={`/assets/photo-${section.coverPhoto}~256.jpg 256w, /assets/photo-${section.coverPhoto}~1500.jpg 1500w`}
                 sizes="(max-width: 768px) 240px, 320px"
                 alt="Steve Jobs"
                 loading="eager"
